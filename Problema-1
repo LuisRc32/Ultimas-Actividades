@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {//printf("\n");
+	int i, j, Sm, Sf, Sc, Sts=0, Sti=0;
+	int Sf3=0, Sf5=0, Sfp=0;
+	int Sc2=0, Sc4=0, Sc6=0, Sci=0;
+	srand(time(NULL));
+	int A[5][7];
+	printf("Matriz del Problema 1:\n");
+	
+	for (i=0; i<5; i++){
+		for (j=0; j<7; j++){
+			A[i][j]=rand()%(10+1-1)+1;
+			printf("%d ",A[i][j]);
+			if(i==j){
+				Sm+=A[i][j];	
+			}//Fin de if
+			
+		}//Fin del segundo for
+		printf("\n");
+	}//Fin del primer for
+	
+	for (j=0; j<7; j++){
+		Sf+= A[0][j];
+		Sf3+= A[2][j];
+		Sf5+= A[4][j];
+	}//Fin del for para filas
+
+	Sfp= Sf+Sf3+Sf5;//Suma de las filas pares
+
+	for (i=0; i<5; i++){
+		Sc+= A[i][6];
+		Sc2+= A[i][1];
+		Sc4+= A[i][3];
+		Sc6+= A[i][5];
+	}//Fin del for para columnas
+
+	Sci= Sc2+Sc4+Sc6;//Suma de las columnas impares
+
+    for (i=0; i<5; i++) {
+        for (j=i+1; j<7; j++) {
+            Sts += A[i][j];
+        }
+    }//Fin del for Triangular Superior
+    
+    for (i=0; i<5; i++) {
+        for (j=0; j<i; j++) {
+            Sti += A[i][j];
+        }
+    }//Fin del for Triangular Inferior
+	//IMPRIMIR RESULTADOS DEL PROBLEMA 1
+	printf("\n---------------PRINCIPAL-----------------");
+	printf("\nLa suma de la diagonal principal es: %d",Sm);
+	printf("\nLa suma de la primera (1) fila es: %d",Sf);
+	printf("\nLa suma de la ultima (7) columna es: %d",Sc);
+	
+	printf("\n\n-----------------FILAS------------------");
+	printf("\nLa suma de la fila 1 es: %d",Sf);
+	printf("\nLa suma de la fila 3 es: %d",Sf3);
+	printf("\nLa suma de la fila 5 es: %d",Sf5);
+	printf("\nLa suma de las filas pares es: %d",Sfp);
+	
+	printf("\n\n----------------COLUMNAS----------------");
+	printf("\nLa suma de la columna 2 es: %d",Sc2);
+	printf("\nLa suma de la columna 4 es: %d",Sc4);
+	printf("\nLa suma de la columna 6 es: %d",Sc6);
+	printf("\nLa suma de las columnas impares es: %d",Sci);
+	
+	printf("\n\n--------------TRIANGULAR----------------");
+	printf("\nLa suma de la diagonal es: %d",Sm);
+	printf("\nLa suma de la triangular superior es: %d",Sts);
+	printf("\nLa suma de la triangular inferior es: %d",Sti);
+	
+	printf("\n\n--------FIN DEL PROGRAMA--------");
+	return 0;
+}//Fin de main
